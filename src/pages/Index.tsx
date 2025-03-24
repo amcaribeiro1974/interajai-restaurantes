@@ -11,8 +11,7 @@ import {
   Globe, 
   ShoppingCart, 
   Users, 
-  TrendingUp, 
-  FlexibleIcon, 
+  TrendingUp,
   MessageCircle, 
   Shuffle, 
   BadgePercent,
@@ -87,7 +86,13 @@ const Index = () => {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-interaj-800 font-bold text-2xl font-display">interaj<span className="text-interaj-500">AI</span></div>
+          <div className="h-10">
+            <img 
+              src="/lovable-uploads/305994c6-dcad-4240-866f-ba59139d1e54.png" 
+              alt="interajAI Logo" 
+              className="h-full"
+            />
+          </div>
           <div className="hidden md:flex space-x-6">
             <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
             <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors">Solução</a>
@@ -866,8 +871,12 @@ const Index = () => {
       <footer className="py-12 px-6 bg-interaj-50">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-interaj-800 font-bold text-2xl font-display">
-              interaj<span className="text-interaj-500">AI</span>
+            <div className="h-10">
+              <img 
+                src="/lovable-uploads/305994c6-dcad-4240-866f-ba59139d1e54.png" 
+                alt="interajAI Logo" 
+                className="h-full"
+              />
             </div>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
