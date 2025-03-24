@@ -31,12 +31,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     >
       <div className="space-y-4">
         <div className={cn(
-          'rounded-full bg-interaj-100 p-3 w-12 h-12 flex items-center justify-center text-interaj-600',
+          'rounded-full bg-interaj-100 p-3 w-12 h-12 flex items-center justify-center text-interaj-700',
           iconClassName
         )}>
           <Icon size={24} />
         </div>
-        <h3 className="text-xl font-semibold text-interaj-900 font-display">{title}</h3>
+        <h3 className="text-xl font-semibold text-interaj-800 font-display">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </div>
     </ScrollObserver>
