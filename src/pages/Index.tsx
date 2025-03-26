@@ -20,7 +20,8 @@ import {
   Utensils,
   Wine,
   BarChart4,
-  Award
+  Award,
+  Calculator
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -76,8 +77,8 @@ const Index = () => {
       answer: "Sim! Nossa tecnologia de IA foi treinada especificamente para o setor de restaurantes, compreendendo personalização de pedidos, combinações e solicitações especiais."
     },
     {
-      question: "Como é a política de pagamento?",
-      answer: "Trabalhamos com planos mensais e anuais, com descontos progressivos conforme o volume de atendimentos. Todos os planos incluem suporte técnico e atualizações."
+      question: "Como funciona o modelo de preço fixo mensal?",
+      answer: "Oferecemos planos de pagamento fixo mensal, sem nenhuma comissão sobre vendas. Isso torna seus custos previsíveis e geralmente muito menores que as comissões cobradas pelas plataformas de delivery."
     },
     {
       question: "Quais canais o bot pode atender?",
@@ -120,10 +121,10 @@ const Index = () => {
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
-                Reduza custos e atenda <span className="text-interaj-500">24 horas por dia</span>
+                Custo fixo mensal e atendimento <span className="text-interaj-500">24 horas por dia</span>
               </h1>
               <p className="text-xl text-muted-foreground text-balance">
-                Diminua suas comissões de 12% para 5% e automatize o atendimento com inteligência artificial. Aumente suas margens enquanto oferece uma experiência superior.
+                Substitua as comissões variáveis das plataformas por um plano fixo mensal previsível. Automatize o atendimento com inteligência artificial e aumente suas margens.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg">
@@ -195,15 +196,15 @@ const Index = () => {
               Por que escolher a interajAI?
             </h2>
             <p className="text-muted-foreground text-lg">
-              Nossa solução resolve os principais desafios do seu restaurante, reduzindo custos e aumentando a eficiência.
+              Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumentando a eficiência.
             </p>
           </ScrollObserver>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
               icon={DollarSign}
-              title="Reduza Comissões"
-              description="Diminua suas comissões de 12% para apenas 5%, economizando significativamente em pedidos recorrentes."
+              title="Custo Fixo Previsível"
+              description="Substitua as comissões variáveis das plataformas por um custo fixo mensal, tornando sua gestão financeira mais simples."
               delay={100}
             />
             <FeatureCard
@@ -259,7 +260,11 @@ const Index = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
-                    <p>Altas comissões cobradas por plataformas de delivery (até 30% do valor do pedido)</p>
+                    <p>Altas comissões variáveis cobradas por plataformas de delivery (até 30% do valor do pedido)</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Custos imprevisíveis que aumentam conforme seu negócio cresce</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
@@ -273,10 +278,6 @@ const Index = () => {
                     <div className="mr-3 mt-1 text-red-500">•</div>
                     <p>Atendimento inconsistente em momentos de pico</p>
                   </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-red-500">•</div>
-                    <p>Dificuldade em sugerir adicionais e aumentar o ticket médio</p>
-                  </li>
                 </ul>
               </div>
             </ScrollObserver>
@@ -287,7 +288,11 @@ const Index = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Comissões significativamente menores (apenas 5%) em um canal próprio</p>
+                    <p>Custo fixo mensal previsível, sem comissões sobre vendas</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Orçamento estável mesmo com o crescimento do seu negócio</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -300,10 +305,6 @@ const Index = () => {
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Capacidade ilimitada, mesmo em horários de pico</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Sugestões inteligentes que aumentam o ticket médio em até 30%</p>
                   </li>
                 </ul>
               </div>
@@ -333,7 +334,7 @@ const Index = () => {
                     Migre clientes das plataformas para seu canal próprio
                   </h3>
                   <p className="text-muted-foreground">
-                    Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, reduzindo comissões e fidelizando a base de clientes.
+                    Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, transformando comissões variáveis em um custo fixo previsível.
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start">
@@ -370,7 +371,7 @@ const Index = () => {
                                 <div className="h-full bg-interaj-500 rounded-full" style={{ width: '65%' }}></div>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span>Economia Gerada</span>
+                                <span>Economia Mensal</span>
                                 <span className="font-medium text-interaj-900">R$ 6.420,00</span>
                               </div>
                               <div className="flex justify-between items-center">
@@ -540,6 +541,92 @@ const Index = () => {
                 </ScrollObserver>
               </div>
             </div>
+
+            {/* Feature 4 - Cost Comparison */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <ScrollObserver animation="from-left">
+                  <div className="relative">
+                    <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="aspect-[4/3] bg-gradient-to-br from-interaj-100 to-interaj-200 rounded-2xl relative">
+                        <div className="absolute inset-0 flex items-center justify-center p-6">
+                          <div className="glass w-full max-w-sm rounded-xl p-4 space-y-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 rounded-full bg-interaj-100 flex items-center justify-center text-interaj-500">
+                                <Calculator size={20} />
+                              </div>
+                              <div>
+                                <p className="font-medium">Comparativo de Custos</p>
+                              </div>
+                            </div>
+                            <div className="space-y-5">
+                              <div className="glass rounded-lg p-3 space-y-2">
+                                <div className="font-medium">Plataformas de Delivery</div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Vendas mensais</span>
+                                  <span>R$ 50.000</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Comissão (25%)</span>
+                                  <span className="text-red-500">R$ 12.500</span>
+                                </div>
+                              </div>
+                              <div className="glass rounded-lg p-3 space-y-2">
+                                <div className="font-medium">interajAI (Plano Profissional)</div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Custo fixo mensal</span>
+                                  <span className="text-green-600">R$ 1.399</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Comissões</span>
+                                  <span className="text-green-600">R$ 0</span>
+                                </div>
+                              </div>
+                              <div className="rounded-lg p-3 bg-interaj-100/50 font-medium">
+                                <div className="flex justify-between">
+                                  <span>Economia Mensal</span>
+                                  <span className="text-green-700">R$ 11.101</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -left-4"></div>
+                  </div>
+                </ScrollObserver>
+              </div>
+              <ScrollObserver animation="from-right" className="space-y-6">
+                <div className="inline-block px-4 py-1 bg-interaj-100 text-interaj-800 rounded-full text-sm font-medium">
+                  Economia Real
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
+                  Transforme comissões imprevisíveis em custos fixos previsíveis
+                </h3>
+                <p className="text-muted-foreground">
+                  Nosso modelo de preço fixo mensal substitui as altas comissões das plataformas de delivery, gerando economia significativa e previsibilidade financeira.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Sem comissões sobre vendas, apenas uma mensalidade fixa</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Quanto mais você vende, maior sua economia</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Previsibilidade para planejamento financeiro</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>ROI positivo imediato para a maioria dos restaurantes</p>
+                  </li>
+                </ul>
+              </ScrollObserver>
+            </div>
           </div>
         </div>
       </section>
@@ -558,14 +645,14 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
-              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio foi surpreendentemente rápida."
+              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio nos dá uma previsibilidade financeira que não tínhamos antes."
               author="Carlos Silva"
               role="Proprietário"
               company="Pizzaria Bella Napoli"
               delay={100}
             />
             <TestimonialCard
-              quote="O melhor investimento que fizemos no último ano. Nossos custos com comissões caíram drasticamente e agora atendemos 24 horas sem custos adicionais."
+              quote="O melhor investimento que fizemos no último ano. Em vez de pagar comissões variáveis, agora temos um custo fixo mensal que é muito menor e totalmente previsível. Além disso, atendemos 24 horas."
               author="Marina Costa"
               role="Gerente"
               company="Sushi Express"
@@ -660,6 +747,10 @@ const Index = () => {
                     <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Suporte por e-mail</p>
                   </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Sem comissões sobre vendas</p>
+                  </li>
                 </ul>
                 <Button variant="outline" className="w-full">Saiba Mais</Button>
               </div>
@@ -700,6 +791,10 @@ const Index = () => {
                     <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Estratégia de migração das plataformas</p>
                   </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Sem comissões sobre vendas</p>
+                  </li>
                 </ul>
                 <Button className="w-full">Começar Agora</Button>
               </div>
@@ -739,7 +834,7 @@ const Index = () => {
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Plano de marketing dedicado</p>
+                    <p>Sem comissões sobre vendas</p>
                   </li>
                 </ul>
                 <div className="glass rounded-lg p-4 mb-6 bg-interaj-50/50">
@@ -772,7 +867,7 @@ const Index = () => {
             <p className="text-muted-foreground">Todos os planos incluem:</p>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4">
               <span className="inline-flex items-center text-sm text-interaj-700">
-                <BadgePercent size={16} className="mr-1" /> Comissão reduzida (5%)
+                <DollarSign size={16} className="mr-1" /> Preço fixo sem comissões
               </span>
               <span className="inline-flex items-center text-sm text-interaj-700">
                 <Clock size={16} className="mr-1" /> Atendimento 24/7
@@ -795,7 +890,7 @@ const Index = () => {
                   Transforme seu restaurante hoje
                 </h2>
                 <p className="text-muted-foreground text-lg">
-                  Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade.
+                  Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center">
@@ -820,7 +915,7 @@ const Index = () => {
                     </li>
                     <li className="flex items-start">
                       <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Consultoria sobre migração de plataformas</p>
+                      <p>Cálculo comparativo: plataformas vs. custo fixo</p>
                     </li>
                   </ul>
                 </div>
@@ -921,3 +1016,4 @@ const Index = () => {
 };
 
 export default Index;
+
