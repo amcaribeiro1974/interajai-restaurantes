@@ -16,7 +16,11 @@ import {
   Shuffle, 
   BadgePercent,
   ChevronDown,
-  Mail
+  Mail,
+  Utensils,
+  Wine,
+  BarChart4,
+  Award
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -255,7 +259,7 @@ const Index = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
-                    <p>Altas comissões cobradas por aplicativos de delivery (até 30% do valor do pedido)</p>
+                    <p>Altas comissões cobradas por plataformas de delivery (até 30% do valor do pedido)</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
@@ -326,7 +330,7 @@ const Index = () => {
                     Projeto de Migração
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
-                    Migre clientes do iFood para seu canal próprio
+                    Migre clientes das plataformas para seu canal próprio
                   </h3>
                   <p className="text-muted-foreground">
                     Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, reduzindo comissões e fidelizando a base de clientes.
@@ -554,7 +558,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
-              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes do iFood para o canal próprio foi surpreendentemente rápida."
+              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio foi surpreendentemente rápida."
               author="Carlos Silva"
               role="Proprietário"
               company="Pizzaria Bella Napoli"
@@ -636,13 +640,13 @@ const Index = () => {
               <div className="glass rounded-2xl p-8 h-full flex flex-col">
                 <div className="mb-6">
                   <div className="text-sm font-medium text-interaj-800 mb-2">Básico</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 299<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 699<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
                   <div className="text-muted-foreground mt-2">Para restaurantes iniciando</div>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Até 300 atendimentos/mês</p>
+                    <p>Até 100 atendimentos/mês</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -668,13 +672,13 @@ const Index = () => {
                 </div>
                 <div className="mb-6">
                   <div className="text-sm font-medium text-interaj-800 mb-2">Profissional</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 599<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.399<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
                   <div className="text-muted-foreground mt-2">Para restaurantes em crescimento</div>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Até 1000 atendimentos/mês</p>
+                    <p>Até 500 atendimentos/mês</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -694,7 +698,7 @@ const Index = () => {
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Estratégia de migração do iFood</p>
+                    <p>Estratégia de migração das plataformas</p>
                   </li>
                 </ul>
                 <Button className="w-full">Começar Agora</Button>
@@ -705,7 +709,7 @@ const Index = () => {
               <div className="glass rounded-2xl p-8 h-full flex flex-col">
                 <div className="mb-6">
                   <div className="text-sm font-medium text-interaj-800 mb-2">Premium</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 999<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.999<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
                   <div className="text-muted-foreground mt-2">Para restaurantes estabelecidos</div>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
@@ -735,9 +739,30 @@ const Index = () => {
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Personalização completa</p>
+                    <p>Plano de marketing dedicado</p>
                   </li>
                 </ul>
+                <div className="glass rounded-lg p-4 mb-6 bg-interaj-50/50">
+                  <h4 className="font-medium text-interaj-800 mb-2">Add-ons exclusivos:</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <BarChart4 size={16} className="mr-2 text-interaj-500" />
+                      <span>Plano de marketing para aumento de frequência</span>
+                    </li>
+                    <li className="flex items-center">
+                      <TrendingUp size={16} className="mr-2 text-interaj-500" />
+                      <span>Estratégias para aumento de ticket médio</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Utensils size={16} className="mr-2 text-interaj-500" />
+                      <span>Garçom digital para atendimento no restaurante</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Wine size={16} className="mr-2 text-interaj-500" />
+                      <span>Sommelier virtual</span>
+                    </li>
+                  </ul>
+                </div>
                 <Button variant="outline" className="w-full">Saiba Mais</Button>
               </div>
             </ScrollObserver>
