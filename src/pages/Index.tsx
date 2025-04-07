@@ -121,10 +121,10 @@ const Index = () => {
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
-                Custo fixo mensal e atendimento <span className="text-interaj-500">24 horas por dia</span>
+                Contrate um atendente treinado para o seu <span className="text-interaj-500">restaurante</span>
               </h1>
               <p className="text-xl text-muted-foreground text-balance">
-                Substitua as comissões variáveis das plataformas por um plano fixo mensal previsível. Automatize o atendimento com inteligência artificial e aumente suas margens.
+                Automatize seu atendimento com inteligência artificial integrado ao seu sistema atual e aumente suas margens com custos fixos.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg">
@@ -196,8 +196,11 @@ const Index = () => {
               Por que escolher a interajAI?
             </h2>
             <p className="text-muted-foreground text-lg">
-              Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumentando a eficiência.
+              Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumento de eficiência.
             </p>
+            <div className="mt-4 p-3 bg-interaj-50 rounded-lg text-interaj-700 inline-block">
+              Não é cardápio digital. Atenda mensagens de texto e de voz dos seus clientes. Nossa IA entende o seu cliente.
+            </div>
           </ScrollObserver>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -210,13 +213,13 @@ const Index = () => {
             <FeatureCard
               icon={Clock}
               title="Atendimento 24/7"
-              description="Seu restaurante disponível para pedidos a qualquer hora, sem custos extras de horas extras."
+              description="Seu restaurante disponível para pedidos a qualquer hora, sem custos adicionais com horas extras."
               delay={200}
             />
             <FeatureCard
               icon={Globe}
               title="Multilíngue"
-              description="Atenda clientes em diferentes idiomas automaticamente, perfeito para regiões turísticas."
+              description="Atenda clientes em diferentes idiomas automaticamente, perfeito para o mundo global que vivemos."
               delay={300}
             />
             <FeatureCard
@@ -234,7 +237,7 @@ const Index = () => {
             <FeatureCard
               icon={ShoppingCart}
               title="Escalabilidade Imediata"
-              description="Atenda 10 ou 1000 clientes simultaneamente, sem perda de qualidade ou espera."
+              description="Atenda 10 ou 1000 clientes simultaneamente, sem perda de qualidade ou espera e sempre numa comunicação fluida e cordial."
               delay={600}
             />
           </div>
@@ -260,15 +263,15 @@ const Index = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Dificuldade para encontrar e manter bons atendentes</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
                     <p>Altas comissões variáveis cobradas por plataformas de delivery (até 30% do valor do pedido)</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
                     <p>Custos imprevisíveis que aumentam conforme seu negócio cresce</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-red-500">•</div>
-                    <p>Dificuldade para encontrar e manter bons atendentes</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-red-500">•</div>
@@ -288,15 +291,15 @@ const Index = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimento automatizado que complementa sua equipe</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Custo fixo mensal previsível, sem comissões sobre vendas</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Orçamento estável mesmo com o crescimento do seu negócio</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Atendimento automatizado que complementa sua equipe</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -334,7 +337,7 @@ const Index = () => {
                     Migre clientes das plataformas para seu canal próprio
                   </h3>
                   <p className="text-muted-foreground">
-                    Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, transformando comissões variáveis em um custo fixo previsível.
+                    Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, tais como:
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start">
@@ -486,11 +489,7 @@ const Index = () => {
                     </li>
                     <li className="flex items-start">
                       <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Pedidos entram diretamente no sistema Colibri</p>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Gestão de estoque e disponibilidade em tempo real</p>
+                      <p>Pedidos entram diretamente no sistema Colibri e são impressos na área de produção exatamente como seus pedidos atuais</p>
                     </li>
                   </ul>
                 </div>
@@ -525,10 +524,6 @@ const Index = () => {
                                 <div className="flex justify-between items-center">
                                   <span>Preços</span>
                                   <span className="text-green-600 text-sm">Sincronizado</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                  <span>Estoque</span>
-                                  <span className="text-green-600 text-sm">Tempo real</span>
                                 </div>
                               </div>
                             </div>
