@@ -89,3 +89,24 @@
     @apply opacity-100 translate-y-0 translate-x-0;
   }
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .glass {
+    @apply bg-white/80; /* Slightly less transparent on mobile */
+  }
+  
+  h1, h2, h3 {
+    @apply text-balance;
+  }
+  
+  /* Improve tap target sizes for mobile */
+  button, a {
+    @apply min-h-11 min-w-11;
+  }
+  
+  /* Adjust spacing for mobile */
+  .container {
+    @apply px-4;
+  }
+}

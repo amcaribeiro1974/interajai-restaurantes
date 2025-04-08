@@ -4,6 +4,7 @@ import ScrollObserver from '@/components/ScrollObserver';
 import FeatureCard from '@/components/FeatureCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQ from '@/components/FAQ';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { 
   Clock, 
   DollarSign, 
@@ -20,12 +21,14 @@ import {
   Wine,
   BarChart4,
   Award,
-  Calculator
+  Calculator,
+  Menu
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const observeElements = () => {
@@ -53,6 +56,10 @@ const Index = () => {
       observer.disconnect();
     };
   }, []);
+
+  // Mobile menu toggle
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,45 +95,70 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 glass">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="h-12">
+          <div className="h-10 md:h-12">
             <img 
               src="/lovable-uploads/d96ff836-d7f3-4831-9da2-bc879e772b7a.png" 
               alt="interajAI Restaurantes Logo" 
               className="h-full"
             />
           </div>
+          
           <div className="hidden md:flex space-x-6">
             <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
             <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors">Solução</a>
             <a href="#casos" className="text-interaj-700 hover:text-interaj-500 transition-colors">Casos de Sucesso</a>
             <a href="#faq" className="text-interaj-700 hover:text-interaj-500 transition-colors">FAQ</a>
           </div>
-          <a href="#contato">
-            <Button size="sm">Fale Conosco</Button>
-          </a>
+          
+          <div className="flex items-center space-x-4">
+            <a href="#contato" className="hidden sm:block">
+              <Button size="sm">Fale Conosco</Button>
+            </a>
+            
+            <button 
+              className="md:hidden text-interaj-800 p-2 rounded-md"
+              onClick={toggleMenu}
+              aria-label="Menu"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
+        
+        {/* Mobile menu dropdown */}
+        {menuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 px-6 z-50 border-t border-interaj-100">
+            <div className="flex flex-col space-y-4">
+              <a href="#beneficios" onClick={toggleMenu} className="text-interaj-700 py-2 border-b border-interaj-50">Benefícios</a>
+              <a href="#solucao" onClick={toggleMenu} className="text-interaj-700 py-2 border-b border-interaj-50">Solução</a>
+              <a href="#casos" onClick={toggleMenu} className="text-interaj-700 py-2 border-b border-interaj-50">Casos de Sucesso</a>
+              <a href="#faq" onClick={toggleMenu} className="text-interaj-700 py-2 border-b border-interaj-50">FAQ</a>
+              <a href="#contato" onClick={toggleMenu} className="text-interaj-700 py-2">Fale Conosco</a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 md:pt-40 md:pb-32">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 md:pt-40 md:pb-32">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-6 md:space-y-8">
               <div>
-                <span className="bg-interaj-100 text-interaj-800 rounded-full px-4 py-1 text-sm font-medium">
+                <span className="bg-interaj-100 text-interaj-800 rounded-full px-3 py-1 text-xs sm:text-sm font-medium">
                   Exclusivo para usuários Colibri
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
                 Contrate um atendente treinado para o seu <span className="text-interaj-500">restaurante</span>
               </h1>
-              <p className="text-xl text-muted-foreground text-balance">
+              <p className="text-lg sm:text-xl text-muted-foreground text-balance">
                 Ela não dorme. Não para. E faz seu negócio vender mais.
               </p>
               
-              <div className="space-y-3 bg-interaj-50 p-5 rounded-xl">
+              <div className="space-y-3 bg-interaj-50 p-4 sm:p-5 rounded-xl">
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-interaj-500">•</div>
@@ -156,37 +188,39 @@ const Index = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg">
+                <Button size="lg" className="w-full sm:w-auto">
                   Solicitar Demonstração
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
                   Ver Como Funciona
                 </Button>
               </div>
-              <div className="pt-6 flex items-center space-x-2 text-muted-foreground">
+              
+              <div className="pt-4 sm:pt-6 flex items-center space-x-2 text-muted-foreground">
                 <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-interaj-200 flex items-center justify-center text-xs text-interaj-600">R1</div>
-                  <div className="w-8 h-8 rounded-full bg-interaj-300 flex items-center justify-center text-xs text-white">R2</div>
-                  <div className="w-8 h-8 rounded-full bg-interaj-400 flex items-center justify-center text-xs text-white">R3</div>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-interaj-200 flex items-center justify-center text-xs text-interaj-600">R1</div>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-interaj-300 flex items-center justify-center text-xs text-white">R2</div>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-interaj-400 flex items-center justify-center text-xs text-white">R3</div>
                 </div>
-                <span>Mais de 100 restaurantes já utilizam</span>
+                <span className="text-xs sm:text-sm">Mais de 100 restaurantes já utilizam</span>
               </div>
             </div>
-            <div className="relative">
+            
+            <div className="relative mt-6 md:mt-0">
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="/lovable-uploads/4c91889c-cb48-4390-92a7-282e5bad6152.png" 
                   alt="Atendente Virtual interajAI" 
                   className="w-full rounded-2xl"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-interaj-500/90 p-3 text-white text-center text-sm md:text-base">
+                <div className="absolute bottom-0 left-0 right-0 bg-interaj-500/90 p-2 sm:p-3 text-white text-center text-xs sm:text-sm md:text-base">
                   <p className="font-medium">Automação de atendimento via WhatsApp com Inteligência Artificial</p>
                 </div>
               </div>
               <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
               
-              <div className="absolute -right-4 -top-8 md:-right-12 md:-top-12 bg-interaj-50 p-4 rounded-xl shadow-lg border border-interaj-100 max-w-[180px] rotate-6 z-20">
-                <div className="text-sm font-medium text-interaj-800">
+              <div className="absolute -right-2 -top-4 sm:-right-4 sm:-top-8 md:-right-12 md:-top-12 bg-interaj-50 p-3 sm:p-4 rounded-xl shadow-lg border border-interaj-100 max-w-[150px] sm:max-w-[180px] rotate-6 z-20">
+                <div className="text-xs sm:text-sm font-medium text-interaj-800">
                   <span className="text-interaj-500 font-bold block mb-1">Não é uma pessoa real!</span>
                   Atendimento 100% automatizado por IA que conversa naturalmente pelo WhatsApp
                 </div>
@@ -197,28 +231,28 @@ const Index = () => {
       </section>
 
       {/* Scroll indicator */}
-      <div className="flex justify-center mb-16">
+      <div className="flex justify-center mb-10 sm:mb-16">
         <a href="#beneficios" className="animate-bounce">
-          <ChevronDown className="text-interaj-400" size={32} />
+          <ChevronDown className="text-interaj-400" size={24} />
         </a>
       </div>
 
       {/* Benefits Section */}
-      <section id="beneficios" className="py-20 px-6">
+      <section id="beneficios" className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="container mx-auto">
-          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
               Por que escolher a interajAI?
             </h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-base sm:text-lg">
               Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumento de eficiência.
             </p>
-            <div className="mt-4 p-3 bg-interaj-50 rounded-lg text-interaj-700 inline-block">
+            <div className="mt-4 p-3 bg-interaj-50 rounded-lg text-interaj-700 text-sm sm:text-base inline-block">
               Não é cardápio digital. Atenda mensagens de texto e de voz dos seus clientes. Nossa IA entende o seu cliente.
             </div>
           </ScrollObserver>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <FeatureCard
               icon={DollarSign}
               title="Custo Fixo Previsível"
@@ -998,25 +1032,25 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-interaj-50">
+      <footer className="py-8 sm:py-12 px-4 sm:px-6 bg-interaj-50">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="h-12">
+            <div className="h-10 sm:h-12">
               <img 
                 src="/lovable-uploads/d96ff836-d7f3-4831-9da2-bc879e772b7a.png" 
                 alt="interajAI Restaurantes Logo" 
                 className="h-full"
               />
             </div>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-              <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
-              <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors">Solução</a>
-              <a href="#casos" className="text-interaj-700 hover:text-interaj-500 transition-colors">Casos de Sucesso</a>
-              <a href="#faq" className="text-interaj-700 hover:text-interaj-500 transition-colors">FAQ</a>
-              <a href="#contato" className="text-interaj-700 hover:text-interaj-500 transition-colors">Contato</a>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-x-8 sm:gap-y-4">
+              <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors text-sm sm:text-base">Benefícios</a>
+              <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors text-sm sm:text-base">Solução</a>
+              <a href="#casos" className="text-interaj-700 hover:text-interaj-500 transition-colors text-sm sm:text-base">Casos de Sucesso</a>
+              <a href="#faq" className="text-interaj-700 hover:text-interaj-500 transition-colors text-sm sm:text-base">FAQ</a>
+              <a href="#contato" className="text-interaj-700 hover:text-interaj-500 transition-colors text-sm sm:text-base">Contato</a>
             </div>
           </div>
-          <div className="mt-8 text-center text-sm text-muted-foreground">
+          <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-muted-foreground">
             © {new Date().getFullYear()} interajAI. Todos os direitos reservados.
           </div>
         </div>
