@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
@@ -34,19 +35,19 @@ const testimonials = [
   {
     author: 'Maria Silva',
     role: 'Proprietária do Restaurante Saboroso',
-    content: 'Desde que implementamos o interajAI, vimos um aumento significativo na satisfação dos clientes e nas vendas. A análise de cardápio nos ajudou a focar nos pratos certos, e o marketing personalizado tem sido um sucesso!',
+    text: 'Desde que implementamos o interajAI, vimos um aumento significativo na satisfação dos clientes e nas vendas. A análise de cardápio nos ajudou a focar nos pratos certos, e o marketing personalizado tem sido um sucesso!',
     avatar: '/lovable-uploads/pessoa1.png',
   },
   {
     author: 'João Pereira',
     role: 'Gerente do Bistrô Requinte',
-    content: 'O gerenciamento de reservas inteligente revolucionou a forma como lidamos com as reservas. Reduzimos drasticamente o número de não comparecimentos e otimizamos o uso de nossas mesas. Recomendo a todos os restaurantes!',
+    text: 'O gerenciamento de reservas inteligente revolucionou a forma como lidamos com as reservas. Reduzimos drasticamente o número de não comparecimentos e otimizamos o uso de nossas mesas. Recomendo a todos os restaurantes!',
     avatar: '/lovable-uploads/pessoa2.png',
   },
   {
     author: 'Carla Rodrigues',
     role: 'Chef do Restaurante Delícia',
-    content: 'A análise de feedback em tempo real nos permite identificar rapidamente áreas de melhoria e responder às preocupações dos clientes. Isso tem um impacto direto na nossa reputação e na fidelidade dos clientes.',
+    text: 'A análise de feedback em tempo real nos permite identificar rapidamente áreas de melhoria e responder às preocupações dos clientes. Isso tem um impacto direto na nossa reputação e na fidelidade dos clientes.',
     avatar: '/lovable-uploads/pessoa3.png',
   },
 ];
@@ -111,7 +112,7 @@ const Index = () => {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="h-15">
+          <div className="h-10">
             <img 
               src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
               alt="interajAI Restaurantes Logo" 
@@ -188,8 +189,7 @@ const Index = () => {
                 title={feature.title}
                 description={feature.description}
                 icon={feature.icon}
-                className="animate-on-scroll from-bottom"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                delay={index * 100}
               />
             ))}
           </div>
@@ -246,10 +246,9 @@ const Index = () => {
                 key={index}
                 author={testimonial.author}
                 role={testimonial.role}
-                content={testimonial.content}
+                text={testimonial.text}
                 avatar={testimonial.avatar}
-                className="animate-on-scroll from-bottom"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                delay={index * 100}
               />
             ))}
           </div>
@@ -328,7 +327,7 @@ const Index = () => {
           <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
             Perguntas Frequentes
           </h2>
-          <FAQ items={faqs} className="animate-on-scroll from-bottom" />
+          <FAQ items={faqs} />
         </div>
       </section>
 
@@ -336,7 +335,7 @@ const Index = () => {
       <footer className="py-12 px-6 bg-interaj-50">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="h-15">
+            <div className="h-10">
               <img 
                 src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
                 alt="interajAI Restaurantes Logo" 
