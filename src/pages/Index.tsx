@@ -112,7 +112,7 @@ const Index = () => {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="h-15">
+          <div className="h-[22.5px]">
             <img 
               src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
               alt="interajAI Restaurantes Logo" 
@@ -335,7 +335,7 @@ const Index = () => {
       <footer className="py-12 px-6 bg-interaj-50">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="h-15">
+            <div className="h-[22.5px]">
               <img 
                 src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
                 alt="interajAI Restaurantes Logo" 
