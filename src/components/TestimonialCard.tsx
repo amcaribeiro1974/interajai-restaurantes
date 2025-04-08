@@ -4,16 +4,16 @@ import { cn } from '@/lib/utils';
 import ScrollObserver from './ScrollObserver';
 
 interface TestimonialCardProps {
-  quote: string;
+  text: string;
   author: string;
   role: string;
-  company: string;
+  company?: string;
   className?: string;
   delay?: number;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
-  quote,
+  text,
   author,
   role,
   company,
@@ -29,10 +29,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       delay={delay}
     >
       <div className="space-y-4">
-        <p className="text-lg italic text-interaj-800">{quote}</p>
+        <p className="text-lg italic text-interaj-800">{text}</p>
         <div className="pt-2 border-t border-interaj-100">
           <p className="font-semibold text-interaj-900">{author}</p>
-          <p className="text-sm text-muted-foreground">{role}, {company}</p>
+          <p className="text-sm text-muted-foreground">{role}{company ? `, ${company}` : ''}</p>
         </div>
       </div>
     </ScrollObserver>
