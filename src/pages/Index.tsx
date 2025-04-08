@@ -179,8 +179,18 @@ const Index = () => {
                   alt="Atendente Virtual interajAI" 
                   className="w-full rounded-2xl"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-interaj-500/90 p-3 text-white text-center text-sm md:text-base">
+                  <p className="font-medium">Automação de atendimento via WhatsApp com Inteligência Artificial</p>
+                </div>
               </div>
               <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
+              
+              <div className="absolute -right-4 -top-8 md:-right-12 md:-top-12 bg-interaj-50 p-4 rounded-xl shadow-lg border border-interaj-100 max-w-[180px] rotate-6 z-20">
+                <div className="text-sm font-medium text-interaj-800">
+                  <span className="text-interaj-500 font-bold block mb-1">Não é uma pessoa real!</span>
+                  Atendimento 100% automatizado por IA que conversa naturalmente pelo WhatsApp
+                </div>
+              </div>
             </div>
           </div>
         </div>
