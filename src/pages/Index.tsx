@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
@@ -93,8 +92,8 @@ const Index = () => {
         <div className="container mx-auto flex justify-between items-center">
           <div className="h-10">
             <img 
-              src="/lovable-uploads/305994c6-dcad-4240-866f-ba59139d1e54.png" 
-              alt="interajAI Logo" 
+              src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
+              alt="interajAI Restaurantes Logo" 
               className="h-full"
             />
           </div>
@@ -988,8 +987,8 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="h-10">
               <img 
-                src="/lovable-uploads/305994c6-dcad-4240-866f-ba59139d1e54.png" 
-                alt="interajAI Logo" 
+                src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
+                alt="interajAI Restaurantes Logo" 
                 className="h-full"
               />
             </div>
@@ -1011,4 +1010,3 @@ const Index = () => {
 };
 
 export default Index;
-
