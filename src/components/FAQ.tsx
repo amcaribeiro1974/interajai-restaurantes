@@ -18,10 +18,13 @@ interface FAQProps {
 }
 
 const FAQ: React.FC<FAQProps> = ({ items }) => {
+  // Ensure items is not undefined before mapping
+  const faqItems = items || [];
+  
   return (
     <ScrollObserver className="w-full max-w-3xl mx-auto">
       <Accordion type="single" collapsible className="w-full">
-        {items.map((item, index) => (
+        {faqItems.map((item, index) => (
           <AccordionItem 
             key={index} 
             value={`item-${index}`}

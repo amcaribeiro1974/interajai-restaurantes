@@ -5,49 +5,49 @@ import ScrollToTopButton from '@/components/ScrollToTopButton';
 import FeatureCard from '@/components/FeatureCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQ from '@/components/FAQ';
-import { ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronRight, Menu, X, BarChart, Megaphone, Calendar, MessageSquare } from 'lucide-react';
 
 const features = [
   {
     title: 'Otimização de Cardápio Inteligente',
     description: 'Maximize seus lucros com nosso sistema de análise preditiva, que identifica os pratos mais populares e lucrativos, ajudando você a otimizar seu cardápio para o sucesso.',
-    icon: '📈',
+    icon: BarChart,
   },
   {
     title: 'Marketing Personalizado Automatizado',
     description: 'Atinja seus clientes com campanhas de marketing personalizadas e automatizadas. Nossa IA analisa dados de clientes para criar ofertas irresistíveis, aumentando a fidelidade e impulsionando as vendas.',
-    icon: '📣',
+    icon: Megaphone,
   },
   {
     title: 'Gerenciamento de Reservas Inteligente',
     description: 'Otimize a ocupação do seu restaurante com nosso sistema de gerenciamento de reservas inteligente. Reduza o número de não comparecimentos e maximize o uso de suas mesas.',
-    icon: '📅',
+    icon: Calendar,
   },
   {
     title: 'Análise de Feedback em Tempo Real',
     description: 'Monitore e responda ao feedback dos clientes em tempo real. Nossa IA analisa avaliações online e comentários de redes sociais, fornecendo insights valiosos para melhorar a experiência do cliente.',
-    icon: '💬',
+    icon: MessageSquare,
   },
 ];
 
 const testimonials = [
   {
-    name: 'Maria Silva',
-    title: 'Proprietária do Restaurante Saboroso',
-    quote: 'Desde que implementamos o interajAI, vimos um aumento significativo na satisfação dos clientes e nas vendas. A análise de cardápio nos ajudou a focar nos pratos certos, e o marketing personalizado tem sido um sucesso!',
-    image: '/lovable-uploads/pessoa1.png',
+    author: 'Maria Silva',
+    role: 'Proprietária do Restaurante Saboroso',
+    content: 'Desde que implementamos o interajAI, vimos um aumento significativo na satisfação dos clientes e nas vendas. A análise de cardápio nos ajudou a focar nos pratos certos, e o marketing personalizado tem sido um sucesso!',
+    avatar: '/lovable-uploads/pessoa1.png',
   },
   {
-    name: 'João Pereira',
-    title: 'Gerente do Bistrô Requinte',
-    quote: 'O gerenciamento de reservas inteligente revolucionou a forma como lidamos com as reservas. Reduzimos drasticamente o número de não comparecimentos e otimizamos o uso de nossas mesas. Recomendo a todos os restaurantes!',
-    image: '/lovable-uploads/pessoa2.png',
+    author: 'João Pereira',
+    role: 'Gerente do Bistrô Requinte',
+    content: 'O gerenciamento de reservas inteligente revolucionou a forma como lidamos com as reservas. Reduzimos drasticamente o número de não comparecimentos e otimizamos o uso de nossas mesas. Recomendo a todos os restaurantes!',
+    avatar: '/lovable-uploads/pessoa2.png',
   },
   {
-    name: 'Carla Rodrigues',
-    title: 'Chef do Restaurante Delícia',
-    quote: 'A análise de feedback em tempo real nos permite identificar rapidamente áreas de melhoria e responder às preocupações dos clientes. Isso tem um impacto direto na nossa reputação e na fidelidade dos clientes.',
-    image: '/lovable-uploads/pessoa3.png',
+    author: 'Carla Rodrigues',
+    role: 'Chef do Restaurante Delícia',
+    content: 'A análise de feedback em tempo real nos permite identificar rapidamente áreas de melhoria e responder às preocupações dos clientes. Isso tem um impacto direto na nossa reputação e na fidelidade dos clientes.',
+    avatar: '/lovable-uploads/pessoa3.png',
   },
 ];
 
@@ -103,7 +103,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ScrollObserver />
+      <ScrollObserver>
+        <div></div>
+      </ScrollObserver>
       <ScrollToTopButton />
 
       {/* Navbar */}
@@ -242,10 +244,10 @@ const Index = () => {
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}
-                name={testimonial.name}
-                title={testimonial.title}
-                quote={testimonial.quote}
-                image={testimonial.image}
+                author={testimonial.author}
+                role={testimonial.role}
+                content={testimonial.content}
+                avatar={testimonial.avatar}
                 className="animate-on-scroll from-bottom"
                 style={{ transitionDelay: `${index * 100}ms` }}
               />
@@ -326,17 +328,7 @@ const Index = () => {
           <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
             Perguntas Frequentes
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {faqs.map((faq, index) => (
-              <FAQ
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                className="animate-on-scroll from-bottom"
-                style={{ transitionDelay: `${index * 100}ms` }}
-              />
-            ))}
-          </div>
+          <FAQ items={faqs} className="animate-on-scroll from-bottom" />
         </div>
       </section>
 
