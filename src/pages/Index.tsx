@@ -1,333 +1,983 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
 import FeatureCard from '@/components/FeatureCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQ from '@/components/FAQ';
-import { ChevronRight, Menu, X, BarChart, Megaphone, Calendar, MessageSquare } from 'lucide-react';
-
-const features = [
-  {
-    title: 'Otimização de Cardápio Inteligente',
-    description: 'Maximize seus lucros com nosso sistema de análise preditiva, que identifica os pratos mais populares e lucrativos, ajudando você a otimizar seu cardápio para o sucesso.',
-    icon: BarChart,
-  },
-  {
-    title: 'Marketing Personalizado Automatizado',
-    description: 'Atinja seus clientes com campanhas de marketing personalizadas e automatizadas. Nossa IA analisa dados de clientes para criar ofertas irresistíveis, aumentando a fidelidade e impulsionando as vendas.',
-    icon: Megaphone,
-  },
-  {
-    title: 'Gerenciamento de Reservas Inteligente',
-    description: 'Otimize a ocupação do seu restaurante com nosso sistema de gerenciamento de reservas inteligente. Reduza o número de não comparecimentos e maximize o uso de suas mesas.',
-    icon: Calendar,
-  },
-  {
-    title: 'Análise de Feedback em Tempo Real',
-    description: 'Monitore e responda ao feedback dos clientes em tempo real. Nossa IA analisa avaliações online e comentários de redes sociais, fornecendo insights valiosos para melhorar a experiência do cliente.',
-    icon: MessageSquare,
-  },
-];
-
-const testimonials = [
-  {
-    author: 'Maria Silva',
-    role: 'Proprietária do Restaurante Saboroso',
-    text: 'Desde que implementamos o interajAI, vimos um aumento significativo na satisfação dos clientes e nas vendas. A análise de cardápio nos ajudou a focar nos pratos certos, e o marketing personalizado tem sido um sucesso!',
-    avatar: '/lovable-uploads/pessoa1.png',
-  },
-  {
-    author: 'João Pereira',
-    role: 'Gerente do Bistrô Requinte',
-    text: 'O gerenciamento de reservas inteligente revolucionou a forma como lidamos com as reservas. Reduzimos drasticamente o número de não comparecimentos e otimizamos o uso de nossas mesas. Recomendo a todos os restaurantes!',
-    avatar: '/lovable-uploads/pessoa2.png',
-  },
-  {
-    author: 'Carla Rodrigues',
-    role: 'Chef do Restaurante Delícia',
-    text: 'A análise de feedback em tempo real nos permite identificar rapidamente áreas de melhoria e responder às preocupações dos clientes. Isso tem um impacto direto na nossa reputação e na fidelidade dos clientes.',
-    avatar: '/lovable-uploads/pessoa3.png',
-  },
-];
-
-const faqs = [
-  {
-    question: 'Como o interajAI pode ajudar meu restaurante?',
-    answer: 'O interajAI oferece uma variedade de soluções, incluindo otimização de cardápio, marketing personalizado, gerenciamento de reservas inteligente e análise de feedback em tempo real. Tudo isso para aumentar a eficiência, a satisfação do cliente e as vendas do seu restaurante.',
-  },
-  {
-    question: 'O interajAI é fácil de usar?',
-    answer: 'Sim, o interajAI foi projetado para ser intuitivo e fácil de usar. Oferecemos treinamento e suporte completos para garantir que você aproveite ao máximo todas as funcionalidades.',
-  },
-  {
-    question: 'Quanto custa o interajAI?',
-    answer: 'Oferecemos diferentes planos de preços para atender às necessidades de restaurantes de todos os tamanhos. Entre em contato conosco para obter uma cotação personalizada.',
-  },
-  {
-    question: 'O interajAI se integra com outros sistemas que já usamos?',
-    answer: 'Sim, o interajAI pode ser integrado com uma variedade de sistemas, incluindo sistemas de ponto de venda (POS), sistemas de gerenciamento de relacionamento com clientes (CRM) e plataformas de mídia social.',
-  },
-];
+import { 
+  Clock, 
+  DollarSign, 
+  Globe, 
+  ShoppingCart, 
+  Users, 
+  TrendingUp,
+  MessageCircle, 
+  Shuffle, 
+  BadgePercent,
+  ChevronDown,
+  Mail,
+  Utensils,
+  Wine,
+  BarChart4,
+  Award,
+  Calculator
+} from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
-    // On mount, read the preferred theme from localStorage
-    const storedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    if (storedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      setIsDarkMode(true);
-    } else {
-      document.documentElement.classList.remove('dark');
-      setIsDarkMode(false);
-    }
+    const observeElements = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+        observer.observe(element);
+      });
+
+      return observer;
+    };
+
+    const observer = observeElements();
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast({
+      title: "Solicitação enviada com sucesso!",
+      description: "Em breve, nossa equipe entrará em contato.",
+    });
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const toggleDarkMode = () => {
-    const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-    document.documentElement.classList.toggle('dark');
-    setIsDarkMode(newTheme === 'dark');
-    localStorage.setItem('theme', newTheme);
-  };
+  const faqItems = [
+    {
+      question: "Como é feita a integração com o sistema Colibri?",
+      answer: "A integração é simples e não demanda alterações no seu sistema atual. Nossa equipe técnica configura tudo remotamente com apoio de um especialista dedicado ao seu estabelecimento."
+    },
+    {
+      question: "Quanto tempo leva para implementar a solução?",
+      answer: "A implementação completa leva em média 7 dias, incluindo a configuração, treinamento da equipe e período de adaptação."
+    },
+    {
+      question: "O bot consegue entender pedidos complexos?",
+      answer: "Sim! Nossa tecnologia de IA foi treinada especificamente para o setor de restaurantes, compreendendo personalização de pedidos, combinações e solicitações especiais."
+    },
+    {
+      question: "Como funciona o modelo de preço fixo mensal?",
+      answer: "Oferecemos planos de pagamento fixo mensal, sem nenhuma comissão sobre vendas. Isso torna seus custos previsíveis e geralmente muito menores que as comissões cobradas pelas plataformas de delivery."
+    },
+    {
+      question: "Quais canais o bot pode atender?",
+      answer: "Nosso bot é omnichannel e pode atender WhatsApp, site, Instagram, Facebook e outros canais digitais de acordo com a necessidade do seu restaurante."
+    }
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <ScrollObserver>
-        <div></div>
-      </ScrollObserver>
-      <ScrollToTopButton />
-
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 glass">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="h-[22.5px]">
+          <div className="h-10">
             <img 
               src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
               alt="interajAI Restaurantes Logo" 
-              className="h-full w-auto"
+              className="h-full"
             />
           </div>
-
           <div className="hidden md:flex space-x-6">
-            <a href="#features" className="hover:text-interaj-500 transition-colors">Funcionalidades</a>
-            <a href="#how-it-works" className="hover:text-interaj-500 transition-colors">Como Funciona</a>
-            <a href="#testimonials" className="hover:text-interaj-500 transition-colors">Testemunhos</a>
-            <a href="#pricing" className="hover:text-interaj-500 transition-colors">Preços</a>
-            <a href="#faq" className="hover:text-interaj-500 transition-colors">FAQ</a>
+            <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
+            <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors">Solução</a>
+            <a href="#casos" className="text-interaj-700 hover:text-interaj-500 transition-colors">Casos de Sucesso</a>
+            <a href="#faq" className="text-interaj-700 hover:text-interaj-500 transition-colors">FAQ</a>
           </div>
-
-          <Button variant="primary" size="sm">
-            Começar Agora
-            <ChevronRight className="ml-2 h-4 w-4" />
-          </Button>
-
-          {/* Mobile Menu Button */}
-          <button onClick={toggleMobileMenu} className="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none">
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <a href="#contato">
+            <Button size="sm">Fale Conosco</Button>
+          </a>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass mt-2 py-2 px-6">
-            <a href="#features" className="block py-2 hover:text-interaj-500 transition-colors" onClick={closeMobileMenu}>Funcionalidades</a>
-            <a href="#how-it-works" className="block py-2 hover:text-interaj-500 transition-colors" onClick={closeMobileMenu}>Como Funciona</a>
-            <a href="#testimonials" className="block py-2 hover:text-interaj-500 transition-colors" onClick={closeMobileMenu}>Testemunhos</a>
-            <a href="#pricing" className="block py-2 hover:text-interaj-500 transition-colors" onClick={closeMobileMenu}>Preços</a>
-            <a href="#faq" className="block py-2 hover:text-interaj-500 transition-colors" onClick={closeMobileMenu}>FAQ</a>
-            <Button variant="primary" size="sm" className="w-full mt-2">
-              Começar Agora
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-        )}
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="py-24 md:py-32 px-6">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance mb-6 animate-on-scroll">
-            A Inteligência Artificial que Impulsiona o Seu Restaurante ao Sucesso
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 animate-on-scroll delay-100">
-            Descubra como o interajAI pode transformar a gestão do seu restaurante, otimizar seus lucros e encantar seus clientes.
-          </p>
-          <div className="flex justify-center gap-4 animate-on-scroll delay-200">
-            <Button variant="primary" size="lg">
-              Experimente Grátis
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="secondary" size="lg">
-              Saiba Mais
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-16 px-6 bg-gray-50 dark:bg-gray-950">
+      <section className="pt-32 pb-20 px-6 md:pt-40 md:pb-32">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
-            Funcionalidades que Fazem a Diferença
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                title={feature.title}
-                description={feature.description}
-                icon={feature.icon}
-                delay={index * 100}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 px-6">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
-            Como o interajAI Transforma Seu Restaurante
-          </h2>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12">
-            <div className="md:w-1/2 animate-on-scroll from-left">
-              <img
-                src="/lovable-uploads/dashboard.png"
-                alt="Dashboard interajAI"
-                className="rounded-lg shadow-lg"
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div>
+                <span className="bg-interaj-100 text-interaj-800 rounded-full px-4 py-1 text-sm font-medium">
+                  Exclusivo para usuários Colibri
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
+                Contrate um atendente treinado para o seu <span className="text-interaj-500">restaurante</span>
+              </h1>
+              <p className="text-xl text-muted-foreground text-balance">
+                Automatize seu atendimento com inteligência artificial integrado ao seu sistema atual e aumente suas margens com custos fixos.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg">
+                  Solicitar Demonstração
+                </Button>
+                <Button variant="outline" size="lg">
+                  Ver Como Funciona
+                </Button>
+              </div>
+              <div className="pt-6 flex items-center space-x-2 text-muted-foreground">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-interaj-200 flex items-center justify-center text-xs text-interaj-600">R1</div>
+                  <div className="w-8 h-8 rounded-full bg-interaj-300 flex items-center justify-center text-xs text-white">R2</div>
+                  <div className="w-8 h-8 rounded-full bg-interaj-400 flex items-center justify-center text-xs text-white">R3</div>
+                </div>
+                <span>Mais de 100 restaurantes já utilizam</span>
+              </div>
             </div>
-            <div className="md:w-1/2 animate-on-scroll from-right">
-              <h3 className="text-2xl font-semibold mb-4">
-                Análise Inteligente de Dados
-              </h3>
-              <p className="text-gray-600">
-                Nossa IA coleta e analisa dados de diversas fontes, incluindo vendas, feedback de clientes e tendências de mercado, para fornecer insights valiosos sobre o desempenho do seu restaurante.
-              </p>
-              <h3 className="text-2xl font-semibold mt-6 mb-4">
-                Recomendações Personalizadas
-              </h3>
-              <p className="text-gray-600">
-                Com base na análise de dados, o interajAI oferece recomendações personalizadas para otimizar seu cardápio, campanhas de marketing e estratégias de preços, maximizando seus lucros.
-              </p>
-              <h3 className="text-2xl font-semibold mt-6 mb-4">
-                Automação Inteligente
-              </h3>
-              <p className="text-gray-600">
-                Automatize tarefas repetitivas, como o envio de e-mails de marketing e o gerenciamento de reservas, liberando sua equipe para se concentrar no que realmente importa: proporcionar uma experiência excepcional aos seus clientes.
-              </p>
+            <div className="relative">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl animate-float">
+                <div className="aspect-[4/3] bg-gradient-to-br from-interaj-400 to-interaj-600 rounded-2xl relative">
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    <div className="glass w-full max-w-sm rounded-xl p-4 overflow-hidden">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="w-10 h-10 rounded-full bg-interaj-100 flex items-center justify-center text-interaj-500">
+                          <MessageCircle size={20} />
+                        </div>
+                        <div>
+                          <p className="font-medium">Bot interajAI</p>
+                          <p className="text-xs text-muted-foreground">Atendimento Automático</p>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-interaj-50 rounded-lg p-3 text-sm text-right">
+                          Olá! Gostaria de fazer um pedido.
+                        </div>
+                        <div className="bg-interaj-100 rounded-lg p-3 text-sm">
+                          Olá! Bem-vindo ao Restaurante Exemplo. Posso te ajudar com o cardápio ou você já sabe o que deseja pedir?
+                        </div>
+                        <div className="bg-interaj-50 rounded-lg p-3 text-sm text-right">
+                          Quero uma pizza grande de calabresa.
+                        </div>
+                        <div className="bg-interaj-100 rounded-lg p-3 text-sm">
+                          Excelente escolha! Gostaria de adicionar borda recheada por apenas R$ 8,90?
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scroll indicator */}
+      <div className="flex justify-center mb-16">
+        <a href="#beneficios" className="animate-bounce">
+          <ChevronDown className="text-interaj-400" size={32} />
+        </a>
+      </div>
+
+      {/* Benefits Section */}
+      <section id="beneficios" className="py-20 px-6">
+        <div className="container mx-auto">
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+              Por que escolher a interajAI?
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumento de eficiência.
+            </p>
+            <div className="mt-4 p-3 bg-interaj-50 rounded-lg text-interaj-700 inline-block">
+              Não é cardápio digital. Atenda mensagens de texto e de voz dos seus clientes. Nossa IA entende o seu cliente.
+            </div>
+          </ScrollObserver>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={DollarSign}
+              title="Custo Fixo Previsível"
+              description="Substitua as comissões variáveis das plataformas por um custo fixo mensal, tornando sua gestão financeira mais simples."
+              delay={100}
+            />
+            <FeatureCard
+              icon={Clock}
+              title="Atendimento 24/7"
+              description="Seu restaurante disponível para pedidos a qualquer hora, sem custos adicionais com horas extras."
+              delay={200}
+            />
+            <FeatureCard
+              icon={Globe}
+              title="Multilíngue"
+              description="Atenda clientes em diferentes idiomas automaticamente, perfeito para o mundo global que vivemos."
+              delay={300}
+            />
+            <FeatureCard
+              icon={Users}
+              title="Menos Dependência de Equipe"
+              description="Reduza a necessidade de uma equipe grande de atendimento, em um mercado onde bons profissionais são escassos."
+              delay={400}
+            />
+            <FeatureCard
+              icon={TrendingUp}
+              title="Aumento do Ticket Médio"
+              description="Ofertas inteligentes de adicionais e complementos que aumentam o valor médio de cada pedido."
+              delay={500}
+            />
+            <FeatureCard
+              icon={ShoppingCart}
+              title="Escalabilidade Imediata"
+              description="Atenda 10 ou 1000 clientes simultaneamente, sem perda de qualidade ou espera e sempre numa comunicação fluida e cordial."
+              delay={600}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Problem/Solution Section */}
+      <section id="solucao" className="py-20 px-6 bg-gradient-to-b from-white to-interaj-50">
+        <div className="container mx-auto">
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+              Como a interajAI transforma seu negócio
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Entenda como nossa solução resolve os problemas mais comuns enfrentados por restaurantes como o seu.
+            </p>
+          </ScrollObserver>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <ScrollObserver animation="from-left" className="space-y-8">
+              <div className="glass rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-interaj-900 font-display mb-6">Desafios Atuais</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Dificuldade para encontrar e manter bons atendentes</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Altas comissões variáveis cobradas por plataformas de delivery (até 30% do valor do pedido)</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Custos imprevisíveis que aumentam conforme seu negócio cresce</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Horário de funcionamento limitado por questões de pessoal</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-red-500">•</div>
+                    <p>Atendimento inconsistente em momentos de pico</p>
+                  </li>
+                </ul>
+              </div>
+            </ScrollObserver>
+
+            <ScrollObserver animation="from-right" className="space-y-8">
+              <div className="glass rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-interaj-900 font-display mb-6">Nossa Solução</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimento automatizado que complementa sua equipe</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Custo fixo mensal previsível, sem comissões sobre vendas</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Orçamento estável mesmo com o crescimento do seu negócio</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Funcionamento 24 horas sem custos adicionais de pessoal</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Capacidade ilimitada, mesmo em horários de pico</p>
+                  </li>
+                </ul>
+              </div>
+            </ScrollObserver>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Detailed Section */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <ScrollObserver className="max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4 text-center">
+              Funcionalidades que transformam seu restaurante
+            </h2>
+          </ScrollObserver>
+
+          <div className="space-y-24">
+            {/* Feature 1 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <ScrollObserver animation="from-left" className="order-2 lg:order-1">
+                <div className="space-y-6">
+                  <div className="inline-block px-4 py-1 bg-interaj-100 text-interaj-800 rounded-full text-sm font-medium">
+                    Projeto de Migração
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
+                    Migre clientes das plataformas para seu canal próprio
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Implementamos estratégias para migrar seus clientes das plataformas de delivery para seu canal direto, tais como:
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Cupons exclusivos para primeira compra no canal próprio</p>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Programa de fidelidade integrado</p>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Comunicação via QR Code nas embalagens</p>
+                    </li>
+                  </ul>
+                </div>
+              </ScrollObserver>
+              <div className="order-1 lg:order-2">
+                <ScrollObserver animation="from-right">
+                  <div className="relative">
+                    <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="aspect-[4/3] bg-gradient-to-br from-interaj-100 to-interaj-200 rounded-2xl relative">
+                        <div className="absolute inset-0 flex items-center justify-center p-6">
+                          <div className="glass w-full max-w-sm rounded-xl overflow-hidden">
+                            <div className="bg-interaj-50 p-4 border-b border-interaj-100">
+                              <h4 className="font-medium">Migração de Clientes</h4>
+                            </div>
+                            <div className="p-4 space-y-4">
+                              <div className="flex justify-between items-center">
+                                <span>Clientes Migrados</span>
+                                <span className="font-medium text-interaj-900">214</span>
+                              </div>
+                              <div className="h-2 bg-interaj-100 rounded-full overflow-hidden">
+                                <div className="h-full bg-interaj-500 rounded-full" style={{ width: '65%' }}></div>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span>Economia Mensal</span>
+                                <span className="font-medium text-interaj-900">R$ 6.420,00</span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span>Taxa de Retorno</span>
+                                <span className="font-medium text-interaj-900">78%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
+                  </div>
+                </ScrollObserver>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <ScrollObserver animation="from-left">
+                  <div className="relative">
+                    <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="aspect-[4/3] bg-gradient-to-br from-interaj-100 to-interaj-200 rounded-2xl relative">
+                        <div className="absolute inset-0 flex items-center justify-center p-6">
+                          <div className="glass w-full max-w-sm rounded-xl p-4 space-y-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 rounded-full bg-interaj-100 flex items-center justify-center text-interaj-500">
+                                <TrendingUp size={20} />
+                              </div>
+                              <div>
+                                <p className="font-medium">Aumento do Ticket Médio</p>
+                              </div>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="glass rounded-lg p-3">
+                                <div className="flex justify-between">
+                                  <span>Pizza Calabresa</span>
+                                  <span>R$ 49,90</span>
+                                </div>
+                                <div className="mt-2 pl-4 text-sm text-interaj-600">
+                                  <div className="flex justify-between">
+                                    <span>+ Borda Recheada</span>
+                                    <span>R$ 8,90</span>
+                                  </div>
+                                  <div className="flex justify-between">
+                                    <span>+ Refrigerante 2L</span>
+                                    <span>R$ 12,90</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex justify-between font-medium">
+                                <span>Total</span>
+                                <span>R$ 71,70</span>
+                              </div>
+                              <div className="text-sm text-green-600">
+                                Aumento de 43% no ticket!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -left-4"></div>
+                  </div>
+                </ScrollObserver>
+              </div>
+              <ScrollObserver animation="from-right" className="space-y-6">
+                <div className="inline-block px-4 py-1 bg-interaj-100 text-interaj-800 rounded-full text-sm font-medium">
+                  Aumento de Receita
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
+                  Venda mais em cada pedido com sugestões inteligentes
+                </h3>
+                <p className="text-muted-foreground">
+                  Nossa IA analisa o histórico de pedidos para fazer recomendações personalizadas que aumentam o valor médio dos pedidos.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Sugestões contextuais baseadas no pedido atual</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Ofertas especiais para complementos e adicionais</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Recomendações baseadas em popularidade e margem</p>
+                  </li>
+                </ul>
+              </ScrollObserver>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <ScrollObserver animation="from-left" className="order-2 lg:order-1">
+                <div className="space-y-6">
+                  <div className="inline-block px-4 py-1 bg-interaj-100 text-interaj-800 rounded-full text-sm font-medium">
+                    Integração Perfeita
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
+                    Integração total com o sistema Colibri
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Nossa solução se integra perfeitamente ao sistema Colibri, sem exigir mudanças na sua operação atual.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Sincronização automática de cardápio e preços</p>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Pedidos entram diretamente no sistema Colibri e são impressos na área de produção exatamente como seus pedidos atuais</p>
+                    </li>
+                  </ul>
+                </div>
+              </ScrollObserver>
+              <div className="order-1 lg:order-2">
+                <ScrollObserver animation="from-right">
+                  <div className="relative">
+                    <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="aspect-[4/3] bg-gradient-to-br from-interaj-100 to-interaj-200 rounded-2xl relative">
+                        <div className="absolute inset-0 flex items-center justify-center p-6">
+                          <div className="glass w-full max-w-sm rounded-xl overflow-hidden">
+                            <div className="bg-interaj-50 p-4 border-b border-interaj-100 flex justify-between items-center">
+                              <h4 className="font-medium">Painel de Integração</h4>
+                              <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Conectado</span>
+                            </div>
+                            <div className="p-4 space-y-4">
+                              <div className="flex items-center space-x-3">
+                                <Shuffle className="text-interaj-500" size={20} />
+                                <div className="flex-1">
+                                  <div className="text-sm">Sincronização</div>
+                                  <div className="h-1.5 bg-interaj-100 rounded-full overflow-hidden">
+                                    <div className="h-full bg-interaj-500 rounded-full" style={{ width: '100%' }}></div>
+                                  </div>
+                                </div>
+                                <span className="text-sm">100%</span>
+                              </div>
+                              <div className="glass rounded-lg p-3 space-y-3">
+                                <div className="flex justify-between items-center">
+                                  <span>Cardápio</span>
+                                  <span className="text-green-600 text-sm">Sincronizado</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                  <span>Preços</span>
+                                  <span className="text-green-600 text-sm">Sincronizado</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
+                  </div>
+                </ScrollObserver>
+              </div>
+            </div>
+
+            {/* Feature 4 - Cost Comparison */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <ScrollObserver animation="from-left">
+                  <div className="relative">
+                    <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
+                      <div className="aspect-[4/3] bg-gradient-to-br from-interaj-100 to-interaj-200 rounded-2xl relative">
+                        <div className="absolute inset-0 flex items-center justify-center p-6">
+                          <div className="glass w-full max-w-sm rounded-xl p-4 space-y-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 rounded-full bg-interaj-100 flex items-center justify-center text-interaj-500">
+                                <Calculator size={20} />
+                              </div>
+                              <div>
+                                <p className="font-medium">Comparativo de Custos</p>
+                              </div>
+                            </div>
+                            <div className="space-y-5">
+                              <div className="glass rounded-lg p-3 space-y-2">
+                                <div className="font-medium">Plataformas de Delivery</div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Vendas mensais</span>
+                                  <span>R$ 50.000</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Comissão (25%)</span>
+                                  <span className="text-red-500">R$ 12.500</span>
+                                </div>
+                              </div>
+                              <div className="glass rounded-lg p-3 space-y-2">
+                                <div className="font-medium">interajAI (Plano Profissional)</div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Custo fixo mensal</span>
+                                  <span className="text-green-600">R$ 1.399</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span>Comissões</span>
+                                  <span className="text-green-600">R$ 0</span>
+                                </div>
+                              </div>
+                              <div className="rounded-lg p-3 bg-interaj-100/50 font-medium">
+                                <div className="flex justify-between">
+                                  <span>Economia Mensal</span>
+                                  <span className="text-green-700">R$ 11.101</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -left-4"></div>
+                  </div>
+                </ScrollObserver>
+              </div>
+              <ScrollObserver animation="from-right" className="space-y-6">
+                <div className="inline-block px-4 py-1 bg-interaj-100 text-interaj-800 rounded-full text-sm font-medium">
+                  Economia Real
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
+                  Transforme comissões imprevisíveis em custos fixos previsíveis
+                </h3>
+                <p className="text-muted-foreground">
+                  Nosso modelo de preço fixo mensal substitui as altas comissões das plataformas de delivery, gerando economia significativa e previsibilidade financeira.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Sem comissões sobre vendas, apenas uma mensalidade fixa</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Quanto mais você vende, maior sua economia</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Previsibilidade para planejamento financeiro</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>ROI positivo imediato para a maioria dos restaurantes</p>
+                  </li>
+                </ul>
+              </ScrollObserver>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 px-6 bg-gray-50 dark:bg-gray-950">
+      <section id="casos" className="py-20 px-6 bg-gradient-to-b from-interaj-50 to-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
-            O Que Nossos Clientes Estão Dizendo
-          </h2>
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+              O que nossos clientes dizem
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Restaurantes que implementaram a interajAI e transformaram seus negócios.
+            </p>
+          </ScrollObserver>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                author={testimonial.author}
-                role={testimonial.role}
-                text={testimonial.text}
-                avatar={testimonial.avatar}
-                delay={index * 100}
-              />
-            ))}
+            <TestimonialCard
+              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio nos dá uma previsibilidade financeira que não tínhamos antes."
+              author="Carlos Silva"
+              role="Proprietário"
+              company="Pizzaria Bella Napoli"
+              delay={100}
+            />
+            <TestimonialCard
+              quote="O melhor investimento que fizemos no último ano. Em vez de pagar comissões variáveis, agora temos um custo fixo mensal que é muito menor e totalmente previsível. Além disso, atendemos 24 horas."
+              author="Marina Costa"
+              role="Gerente"
+              company="Sushi Express"
+              delay={200}
+            />
+            <TestimonialCard
+              quote="A integração com o Colibri foi perfeita e a equipe da interajAI nos deu todo o suporte necessário. O atendimento automático funciona tão bem que os clientes nem percebem que estão falando com um bot."
+              author="Rafael Mendes"
+              role="Diretor"
+              company="Burger House"
+              delay={300}
+            />
           </div>
-        </div>
-      </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-16 px-6">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
-            Planos de Preços Flexíveis
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Pricing Cards */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center animate-on-scroll from-bottom">
-              <h3 className="text-2xl font-semibold mb-4">Plano Básico</h3>
-              <div className="text-4xl font-bold text-interaj-500 mb-4">Grátis</div>
-              <p className="text-gray-600 mb-6">Ideal para restaurantes que estão começando.</p>
-              <ul className="text-gray-600 mb-6">
-                <li>Otimização de Cardápio Limitada</li>
-                <li>Análise de Feedback Semanal</li>
-                <li>Suporte por E-mail</li>
-              </ul>
-              <Button variant="primary" size="md">Começar Agora</Button>
+          <ScrollObserver className="mt-16 text-center">
+            <div className="glass p-8 rounded-2xl max-w-3xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="text-left">
+                  <h3 className="text-2xl font-bold text-interaj-900 font-display mb-2">Resultados Comprovados</h3>
+                  <p className="text-muted-foreground">Média dos resultados obtidos pelos nossos clientes</p>
+                </div>
+                <div className="flex flex-wrap gap-6 justify-center">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-interaj-600">23%</div>
+                    <div className="text-sm text-muted-foreground">Aumento de Rentabilidade</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-interaj-600">35%</div>
+                    <div className="text-sm text-muted-foreground">Redução de Custos</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-interaj-600">28%</div>
+                    <div className="text-sm text-muted-foreground">Aumento no Ticket Médio</div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center animate-on-scroll from-bottom delay-100">
-              <h3 className="text-2xl font-semibold mb-4">Plano Premium</h3>
-              <div className="text-4xl font-bold text-interaj-500 mb-4">R$99/mês</div>
-              <p className="text-gray-600 mb-6">Para restaurantes que buscam crescimento.</p>
-              <ul className="text-gray-600 mb-6">
-                <li>Otimização de Cardápio Completa</li>
-                <li>Marketing Personalizado</li>
-                <li>Gerenciamento de Reservas</li>
-                <li>Análise de Feedback em Tempo Real</li>
-                <li>Suporte Prioritário</li>
-              </ul>
-              <Button variant="primary" size="md">Começar Agora</Button>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center animate-on-scroll from-bottom delay-200">
-              <h3 className="text-2xl font-semibold mb-4">Plano Enterprise</h3>
-              <div className="text-4xl font-bold text-interaj-500 mb-4">Entre em Contato</div>
-              <p className="text-gray-600 mb-6">Soluções personalizadas para grandes redes.</p>
-              <ul className="text-gray-600 mb-6">
-                <li>Recursos do Plano Premium</li>
-                <li>Integrações Personalizadas</li>
-                <li>Suporte Dedicado</li>
-                <li>Análise Avançada de Dados</li>
-              </ul>
-              <Button variant="primary" size="md">Fale Conosco</Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="cta" className="py-24 px-6 bg-interaj-500 text-white text-center">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold mb-8 animate-on-scroll">
-            Pronto para Transformar Seu Restaurante?
-          </h2>
-          <p className="text-lg mb-8 animate-on-scroll delay-100">
-            Experimente o interajAI e descubra como podemos ajudar você a aumentar seus lucros, otimizar suas operações e encantar seus clientes.
-          </p>
-          <Button variant="secondary" size="lg" className="animate-on-scroll delay-200">
-            Começar Agora
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
+          </ScrollObserver>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-16 px-6 bg-gray-50 dark:bg-gray-950">
+      <section id="faq" className="py-20 px-6">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12 animate-on-scroll">
-            Perguntas Frequentes
-          </h2>
-          <FAQ items={faqs} />
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+              Perguntas Frequentes
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Tire suas dúvidas sobre a implementação da interajAI.
+            </p>
+          </ScrollObserver>
+
+          <FAQ items={faqItems} />
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20 px-6 bg-gradient-to-b from-white to-interaj-50">
+        <div className="container mx-auto">
+          <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
+              Invista no futuro do seu restaurante
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Escolha o plano ideal para o seu negócio.
+            </p>
+          </ScrollObserver>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <ScrollObserver delay={100}>
+              <div className="glass rounded-2xl p-8 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="text-sm font-medium text-interaj-800 mb-2">Básico</div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 699<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-muted-foreground mt-2">Para restaurantes iniciando</div>
+                </div>
+                <ul className="space-y-3 mb-8 flex-1">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Até 100 atendimentos/mês</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Integração básica com Colibri</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimento em 1 canal</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Suporte por e-mail</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Sem comissões sobre vendas</p>
+                  </li>
+                </ul>
+                <Button variant="outline" className="w-full">Saiba Mais</Button>
+              </div>
+            </ScrollObserver>
+
+            <ScrollObserver delay={200}>
+              <div className="glass rounded-2xl p-8 h-full flex flex-col relative border border-interaj-200 shadow-lg">
+                <div className="absolute -top-4 left-0 right-0 flex justify-center">
+                  <div className="bg-interaj-500 text-white text-sm font-medium px-4 py-1 rounded-full">Mais Popular</div>
+                </div>
+                <div className="mb-6">
+                  <div className="text-sm font-medium text-interaj-800 mb-2">Profissional</div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.399<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-muted-foreground mt-2">Para restaurantes em crescimento</div>
+                </div>
+                <ul className="space-y-3 mb-8 flex-1">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Até 500 atendimentos/mês</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Integração completa com Colibri</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimento em 3 canais</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Suporte WhatsApp e e-mail</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Relatórios de desempenho</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Estratégia de migração das plataformas</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Sem comissões sobre vendas</p>
+                  </li>
+                </ul>
+                <Button className="w-full">Começar Agora</Button>
+              </div>
+            </ScrollObserver>
+
+            <ScrollObserver delay={300}>
+              <div className="glass rounded-2xl p-8 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="text-sm font-medium text-interaj-800 mb-2">Premium</div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.999<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
+                  <div className="text-muted-foreground mt-2">Para restaurantes estabelecidos</div>
+                </div>
+                <ul className="space-y-3 mb-8 flex-1">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimentos ilimitados</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Integração completa com Colibri</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Atendimento em todos os canais</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Suporte prioritário 24/7</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Análises avançadas e BI</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Consultor dedicado</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Sem comissões sobre vendas</p>
+                  </li>
+                </ul>
+                <div className="glass rounded-lg p-4 mb-6 bg-interaj-50/50">
+                  <h4 className="font-medium text-interaj-800 mb-2">Add-ons exclusivos:</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <BarChart4 size={16} className="mr-2 text-interaj-500" />
+                      <span>Plano de marketing para aumento de frequência</span>
+                    </li>
+                    <li className="flex items-center">
+                      <TrendingUp size={16} className="mr-2 text-interaj-500" />
+                      <span>Estratégias para aumento de ticket médio</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Utensils size={16} className="mr-2 text-interaj-500" />
+                      <span>Garçom digital para atendimento no restaurante</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Wine size={16} className="mr-2 text-interaj-500" />
+                      <span>Sommelier virtual</span>
+                    </li>
+                  </ul>
+                </div>
+                <Button variant="outline" className="w-full">Saiba Mais</Button>
+              </div>
+            </ScrollObserver>
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground">Todos os planos incluem:</p>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4">
+              <span className="inline-flex items-center text-sm text-interaj-700">
+                <DollarSign size={16} className="mr-1" /> Preço fixo sem comissões
+              </span>
+              <span className="inline-flex items-center text-sm text-interaj-700">
+                <Clock size={16} className="mr-1" /> Atendimento 24/7
+              </span>
+              <span className="inline-flex items-center text-sm text-interaj-700">
+                <Users size={16} className="mr-1" /> Atendimentos simultâneos
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contato" className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <ScrollObserver animation="from-left">
+              <div className="space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display">
+                  Transforme seu restaurante hoje
+                </h2>
+                <p className="text-muted-foreground text-lg">
+                  Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <Mail className="mr-3 text-interaj-500" size={20} />
+                    <span>contato@interajai.com</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MessageCircle className="mr-3 text-interaj-500" size={20} />
+                    <span>Atendimento via WhatsApp</span>
+                  </div>
+                </div>
+                <div className="glass p-6 rounded-xl">
+                  <h3 className="font-semibold text-interaj-900 mb-3">Por que conversar conosco?</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Demonstração personalizada para seu restaurante</p>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Análise gratuita do potencial de economia</p>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="mr-3 mt-1 text-interaj-500">•</div>
+                      <p>Cálculo comparativo: plataformas vs. custo fixo</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ScrollObserver>
+
+            <ScrollObserver animation="from-right">
+              <div className="glass rounded-2xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-interaj-900 font-display mb-6">
+                  Solicite uma demonstração
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-interaj-800">Nome</label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
+                      placeholder="Seu nome completo"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="restaurant" className="text-sm font-medium text-interaj-800">Nome do Restaurante</label>
+                    <input
+                      type="text"
+                      id="restaurant"
+                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
+                      placeholder="Nome do seu estabelecimento"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-interaj-800">E-mail</label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
+                      placeholder="seu@email.com"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium text-interaj-800">Telefone</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
+                      placeholder="(00) 00000-0000"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium text-interaj-800">Mensagem (opcional)</label>
+                    <textarea
+                      id="message"
+                      rows={3}
+                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all resize-none"
+                      placeholder="Conte-nos mais sobre seu restaurante e necessidades"
+                    ></textarea>
+                  </div>
+                  <Button type="submit" size="lg" className="w-full">
+                    Solicitar Demonstração
+                  </Button>
+                </form>
+              </div>
+            </ScrollObserver>
+          </div>
         </div>
       </section>
 
@@ -335,21 +985,23 @@ const Index = () => {
       <footer className="py-12 px-6 bg-interaj-50">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="h-[22.5px]">
+            <div className="h-10">
               <img 
                 src="/lovable-uploads/277d40c9-bf96-4694-b145-7f6cff10d20f.png" 
                 alt="interajAI Restaurantes Logo" 
-                className="h-full w-auto"
+                className="h-full"
               />
             </div>
-            
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-600 hover:text-interaj-500 transition-colors">Termos de Serviço</a>
-              <a href="#" className="text-gray-600 hover:text-interaj-500 transition-colors">Política de Privacidade</a>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+              <a href="#beneficios" className="text-interaj-700 hover:text-interaj-500 transition-colors">Benefícios</a>
+              <a href="#solucao" className="text-interaj-700 hover:text-interaj-500 transition-colors">Solução</a>
+              <a href="#casos" className="text-interaj-700 hover:text-interaj-500 transition-colors">Casos de Sucesso</a>
+              <a href="#faq" className="text-interaj-700 hover:text-interaj-500 transition-colors">FAQ</a>
+              <a href="#contato" className="text-interaj-700 hover:text-interaj-500 transition-colors">Contato</a>
             </div>
-            <p className="text-gray-600">
-              &copy; {new Date().getFullYear()} interajAI Restaurantes. Todos os direitos reservados.
-            </p>
+          </div>
+          <div className="mt-8 text-center text-sm text-muted-foreground">
+            © {new Date().getFullYear()} interajAI. Todos os direitos reservados.
           </div>
         </div>
       </footer>
