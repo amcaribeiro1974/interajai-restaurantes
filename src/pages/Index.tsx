@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
@@ -124,8 +123,38 @@ const Index = () => {
                 Contrate um atendente treinado para o seu <span className="text-interaj-500">restaurante</span>
               </h1>
               <p className="text-xl text-muted-foreground text-balance">
-                Automatize seu atendimento com inteligência artificial integrado ao seu sistema atual e aumente suas margens com custos fixos.
+                Ela não dorme. Não para. E faz seu negócio vender mais.
               </p>
+              
+              <div className="space-y-3 bg-interaj-50 p-5 rounded-xl">
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Trabalha 24h por dia, 7 dias por semana — nunca tira férias</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Fala com seus clientes em qualquer idioma</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Conhece tudo sobre seu cardápio e promoções</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Integra-se ao seu site, WhatsApp, Instagram e mais</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Aumenta o ticket médio com sugestões inteligentes</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Nunca vai trabalhar para a concorrência — ela é sua para sempre</p>
+                  </li>
+                </ul>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg">
                   Solicitar Demonstração
@@ -144,36 +173,12 @@ const Index = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl animate-float">
-                <div className="aspect-[4/3] bg-gradient-to-br from-interaj-400 to-interaj-600 rounded-2xl relative">
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <div className="glass w-full max-w-sm rounded-xl p-4 overflow-hidden">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <div className="w-10 h-10 rounded-full bg-interaj-100 flex items-center justify-center text-interaj-500">
-                          <MessageCircle size={20} />
-                        </div>
-                        <div>
-                          <p className="font-medium">Bot interajAI</p>
-                          <p className="text-xs text-muted-foreground">Atendimento Automático</p>
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <div className="bg-interaj-50 rounded-lg p-3 text-sm text-right">
-                          Olá! Gostaria de fazer um pedido.
-                        </div>
-                        <div className="bg-interaj-100 rounded-lg p-3 text-sm">
-                          Olá! Bem-vindo ao Restaurante Exemplo. Posso te ajudar com o cardápio ou você já sabe o que deseja pedir?
-                        </div>
-                        <div className="bg-interaj-50 rounded-lg p-3 text-sm text-right">
-                          Quero uma pizza grande de calabresa.
-                        </div>
-                        <div className="bg-interaj-100 rounded-lg p-3 text-sm">
-                          Excelente escolha! Gostaria de adicionar borda recheada por apenas R$ 8,90?
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/lovable-uploads/4c91889c-cb48-4390-92a7-282e5bad6152.png" 
+                  alt="Atendente Virtual interajAI" 
+                  className="w-full rounded-2xl"
+                />
               </div>
               <div className="absolute -z-10 w-full h-full bg-interaj-200 rounded-2xl -bottom-4 -right-4"></div>
             </div>
@@ -669,7 +674,7 @@ const Index = () => {
                   <h3 className="text-2xl font-bold text-interaj-900 font-display mb-2">Resultados Comprovados</h3>
                   <p className="text-muted-foreground">Média dos resultados obtidos pelos nossos clientes</p>
                 </div>
-                <div className="flex flex-wrap gap-6 justify-center">
+                <div className="flex flex-wrap justify-center">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-interaj-600">23%</div>
                     <div className="text-sm text-muted-foreground">Aumento de Rentabilidade</div>
