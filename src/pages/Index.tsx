@@ -754,7 +754,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section - UPDATED TO SINGLE PLAN */}
       <section className="py-20 px-6 bg-gradient-to-b from-white to-interaj-50">
         <div className="container mx-auto">
           <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
@@ -762,94 +762,23 @@ const Index = () => {
               Invista no futuro do seu restaurante
             </h2>
             <p className="text-muted-foreground text-lg">
-              Escolha o plano ideal para o seu negócio.
+              Preços transparentes. Sem comissões variáveis.
             </p>
           </ScrollObserver>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-xl mx-auto">
             <ScrollObserver delay={100}>
-              <div className="glass rounded-2xl p-8 h-full flex flex-col">
-                <div className="mb-6">
-                  <div className="text-sm font-medium text-interaj-800 mb-2">Básico</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 699<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
-                  <div className="text-muted-foreground mt-2">Para restaurantes iniciando</div>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Até 100 atendimentos/mês</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Integração básica com Colibri</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Atendimento em 1 canal</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Suporte por e-mail</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Sem comissões sobre vendas</p>
-                  </li>
-                </ul>
-                <Button variant="outline" className="w-full">Saiba Mais</Button>
-              </div>
-            </ScrollObserver>
-
-            <ScrollObserver delay={200}>
               <div className="glass rounded-2xl p-8 h-full flex flex-col relative border border-interaj-200 shadow-lg">
                 <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                  <div className="bg-interaj-500 text-white text-sm font-medium px-4 py-1 rounded-full">Mais Popular</div>
+                  <div className="bg-interaj-500 text-white text-sm font-medium px-4 py-1 rounded-full">Plano Único</div>
                 </div>
                 <div className="mb-6">
-                  <div className="text-sm font-medium text-interaj-800 mb-2">Profissional</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.399<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
-                  <div className="text-muted-foreground mt-2">Para restaurantes em crescimento</div>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Até 500 atendimentos/mês</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Integração completa com Colibri</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Atendimento em 3 canais</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Suporte WhatsApp e e-mail</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Relatórios de desempenho</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Estratégia de migração das plataformas</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Sem comissões sobre vendas</p>
-                  </li>
-                </ul>
-                <Button className="w-full">Começar Agora</Button>
-              </div>
-            </ScrollObserver>
-
-            <ScrollObserver delay={300}>
-              <div className="glass rounded-2xl p-8 h-full flex flex-col">
-                <div className="mb-6">
-                  <div className="text-sm font-medium text-interaj-800 mb-2">Premium</div>
-                  <div className="text-3xl font-bold text-interaj-900 font-display">R$ 1.999<span className="text-lg font-normal text-muted-foreground">/mês</span></div>
-                  <div className="text-muted-foreground mt-2">Para restaurantes estabelecidos</div>
+                  <div className="text-sm font-medium text-interaj-800 mb-2">interajAI Restaurantes</div>
+                  <div className="text-3xl font-bold text-interaj-900 font-display">
+                    R$ 750<span className="text-lg font-normal text-muted-foreground">/mês</span>
+                  </div>
+                  <div className="text-interaj-700 mt-2 font-medium">+ R$ 2,80 por pedido</div>
+                  <div className="text-muted-foreground text-sm">Incluindo tokens de IA consumidos</div>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   <li className="flex items-start">
@@ -858,7 +787,11 @@ const Index = () => {
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Integração completa com Colibri</p>
+                    <p>Integração completa com seu PDV por API</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-green-500">•</div>
+                    <p>Consultor dedicado</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -867,14 +800,6 @@ const Index = () => {
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
                     <p>Suporte prioritário 24/7</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Análises avançadas e BI</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Consultor dedicado</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -902,16 +827,16 @@ const Index = () => {
                     </li>
                   </ul>
                 </div>
-                <Button variant="outline" className="w-full">Saiba Mais</Button>
+                <Button className="w-full">Começar Agora</Button>
               </div>
             </ScrollObserver>
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-muted-foreground">Todos os planos incluem:</p>
+            <p className="text-muted-foreground">Plano inclui:</p>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4">
               <span className="inline-flex items-center text-sm text-interaj-700">
-                <DollarSign size={16} className="mr-1" /> Preço fixo sem comissões
+                <DollarSign size={16} className="mr-1" /> Preço mensal fixo previsível
               </span>
               <span className="inline-flex items-center text-sm text-interaj-700">
                 <Clock size={16} className="mr-1" /> Atendimento 24/7
