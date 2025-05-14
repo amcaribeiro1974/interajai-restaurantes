@@ -849,110 +849,49 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - Modified to remove the form */}
       <section id="contato" className="py-20 px-6">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <ScrollObserver animation="from-left">
-              <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display">
-                  Transforme seu restaurante hoje
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <Mail className="mr-3 text-interaj-500" size={20} />
-                    <span>contato@interajai.com</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MessageCircle className="mr-3 text-interaj-500" size={20} />
-                    <span>Atendimento via WhatsApp</span>
-                  </div>
+          <ScrollObserver animation="from-left">
+            <div className="space-y-6 max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display text-center">
+                Transforme seu restaurante hoje
+              </h2>
+              <p className="text-muted-foreground text-lg text-center">
+                Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
+              </p>
+              <div className="flex flex-col items-center space-y-4 pt-4">
+                <div className="flex items-center">
+                  <Mail className="mr-3 text-interaj-500" size={20} />
+                  <span>contato@interajai.com</span>
                 </div>
-                <div className="glass p-6 rounded-xl">
-                  <h3 className="font-semibold text-interaj-900 mb-3">Por que conversar conosco?</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Demonstração personalizada para seu restaurante</p>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Análise gratuita do potencial de economia</p>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Cálculo comparativo: plataformas vs. custo fixo</p>
-                    </li>
-                  </ul>
+                <div className="flex items-center">
+                  <MessageCircle className="mr-3 text-interaj-500" size={20} />
+                  <span>Atendimento via WhatsApp</span>
                 </div>
               </div>
-            </ScrollObserver>
-
-            <ScrollObserver animation="from-right">
-              <div className="glass rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-interaj-900 font-display mb-6">
-                  Solicite uma demonstração
-                </h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-interaj-800">Nome</label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
-                      placeholder="Seu nome completo"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="restaurant" className="text-sm font-medium text-interaj-800">Nome do Restaurante</label>
-                    <input
-                      type="text"
-                      id="restaurant"
-                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
-                      placeholder="Nome do seu estabelecimento"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-interaj-800">E-mail</label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
-                      placeholder="seu@email.com"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-interaj-800">Telefone</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all"
-                      placeholder="(00) 00000-0000"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-interaj-800">Mensagem (opcional)</label>
-                    <textarea
-                      id="message"
-                      rows={3}
-                      className="w-full px-4 py-3 rounded-lg bg-white/50 border border-interaj-200 focus:border-interaj-500 focus:ring-2 focus:ring-interaj-500/30 outline-none transition-all resize-none"
-                      placeholder="Conte-nos mais sobre seu restaurante e necessidades"
-                    ></textarea>
-                  </div>
-                  <Button type="submit" size="lg" className="w-full">
-                    Solicitar Demonstração
-                  </Button>
-                </form>
+              <div className="glass p-6 rounded-xl mt-8">
+                <h3 className="font-semibold text-interaj-900 mb-3">Por que conversar conosco?</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Demonstração personalizada para seu restaurante</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Análise gratuita do potencial de economia</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 text-interaj-500">•</div>
+                    <p>Cálculo comparativo: plataformas vs. custo fixo</p>
+                  </li>
+                </ul>
               </div>
-            </ScrollObserver>
-          </div>
+              <div className="flex justify-center pt-6">
+                <Button size="lg">Fale Conosco</Button>
+              </div>
+            </div>
+          </ScrollObserver>
         </div>
       </section>
 
