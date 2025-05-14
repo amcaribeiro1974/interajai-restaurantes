@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
@@ -71,7 +72,7 @@ const Index = () => {
 
   const faqItems = [
     {
-      question: "Como é feita a integração com o sistema Colibri?",
+      question: "Como é feita a integração com o meu PDV?",
       answer: "A integração é simples e não demanda alterações no seu sistema atual. Nossa equipe técnica configura tudo remotamente com apoio de um especialista dedicado ao seu estabelecimento."
     },
     {
@@ -83,8 +84,8 @@ const Index = () => {
       answer: "Sim! Nossa tecnologia de IA foi treinada especificamente para o setor de restaurantes, compreendendo personalização de pedidos, combinações e solicitações especiais."
     },
     {
-      question: "Como funciona o modelo de preço fixo mensal?",
-      answer: "Oferecemos planos de pagamento fixo mensal, sem nenhuma comissão sobre vendas. Isso torna seus custos previsíveis e geralmente muito menores que as comissões cobradas pelas plataformas de delivery."
+      question: "Como funciona o modelo de preço mensal com valor por pedido?",
+      answer: "Oferecemos uma assinatura mensal fixa mais um pequeno valor por pedido para cobrir o custo dos tokens de IA. Isso mantém seus custos previsíveis e geralmente muito menores que as comissões cobradas pelas plataformas de delivery."
     },
     {
       question: "Quais canais o bot pode atender?",
@@ -100,7 +101,7 @@ const Index = () => {
           <div className="h-10 md:h-12">
             <img 
               src="/lovable-uploads/d96ff836-d7f3-4831-9da2-bc879e772b7a.png" 
-              alt="interajAI Restaurantes Logo" 
+              alt="InterajAI Restaurantes Logo" 
               className="h-full"
             />
           </div>
@@ -142,13 +143,13 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 md:pt-40 md:pb-32">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 md:pt-40">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-6 md:space-y-8">
               <div>
                 <span className="bg-interaj-100 text-interaj-800 rounded-full px-3 py-1 text-xs sm:text-sm font-medium">
-                  Exclusivo para usuários Colibri
+                  Integramos com o seu PDV
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-interaj-900 font-display leading-tight">
@@ -210,7 +211,7 @@ const Index = () => {
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="/lovable-uploads/4c91889c-cb48-4390-92a7-282e5bad6152.png" 
-                  alt="Atendente Virtual interajAI" 
+                  alt="Atendente Virtual InterajAI" 
                   className="w-full rounded-2xl"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-interaj-500/90 p-2 sm:p-3 text-white text-center text-xs sm:text-sm md:text-base">
@@ -230,19 +231,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Scroll indicator */}
-      <div className="flex justify-center mb-10 sm:mb-16">
+      {/* Scroll indicator - reduced space by moving this closer */}
+      <div className="flex justify-center mb-2 sm:mb-8">
         <a href="#beneficios" className="animate-bounce">
           <ChevronDown className="text-interaj-400" size={24} />
         </a>
       </div>
 
       {/* Benefits Section */}
-      <section id="beneficios" className="py-16 sm:py-20 px-4 sm:px-6">
+      <section id="beneficios" className="py-12 sm:py-16 px-4 sm:px-6">
         <div className="container mx-auto">
           <ScrollObserver className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
-              Por que escolher a interajAI?
+              Por que escolher a InterajAI?
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
               Nossa solução resolve os principais desafios do seu restaurante, com custos previsíveis e aumento de eficiência.
@@ -256,7 +257,7 @@ const Index = () => {
             <FeatureCard
               icon={DollarSign}
               title="Custo Fixo Previsível"
-              description="Substitua as comissões variáveis das plataformas por um custo fixo mensal, tornando sua gestão financeira mais simples."
+              description="Substitua as comissões variáveis das plataformas por um custo fixo mensal e um valor por pedido, tornando sua gestão financeira mais simples."
               delay={100}
             />
             <FeatureCard
@@ -298,7 +299,7 @@ const Index = () => {
         <div className="container mx-auto">
           <ScrollObserver className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-interaj-900 font-display mb-4">
-              Como a interajAI transforma seu negócio
+              Como a InterajAI transforma seu negócio
             </h2>
             <p className="text-muted-foreground text-lg">
               Entenda como nossa solução resolve os problemas mais comuns enfrentados por restaurantes como o seu.
@@ -344,7 +345,7 @@ const Index = () => {
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
-                    <p>Custo fixo mensal previsível, sem comissões sobre vendas</p>
+                    <p>Custo fixo mensal previsível, com valor adicional por pedido para cobrir tokens de IA</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-green-500">•</div>
@@ -526,10 +527,10 @@ const Index = () => {
                     Integração Perfeita
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
-                    Integração total com o sistema Colibri
+                    Integração total com o seu PDV
                   </h3>
                   <p className="text-muted-foreground">
-                    Nossa solução se integra perfeitamente ao sistema Colibri, sem exigir mudanças na sua operação atual.
+                    Nossa solução se integra perfeitamente ao seu sistema de PDV, sem exigir mudanças na sua operação atual.
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start">
@@ -538,7 +539,7 @@ const Index = () => {
                     </li>
                     <li className="flex items-start">
                       <div className="mr-3 mt-1 text-interaj-500">•</div>
-                      <p>Pedidos entram diretamente no sistema Colibri e são impressos na área de produção exatamente como seus pedidos atuais</p>
+                      <p>Pedidos entram diretamente no seu PDV e são impressos na área de produção exatamente como seus pedidos atuais</p>
                     </li>
                   </ul>
                 </div>
@@ -616,20 +617,24 @@ const Index = () => {
                                 </div>
                               </div>
                               <div className="glass rounded-lg p-3 space-y-2">
-                                <div className="font-medium">interajAI (Plano Profissional)</div>
+                                <div className="font-medium">InterajAI</div>
                                 <div className="flex justify-between text-sm">
-                                  <span>Custo fixo mensal</span>
-                                  <span className="text-green-600">R$ 1.399</span>
+                                  <span>Assinatura mensal</span>
+                                  <span className="text-green-600">R$ 750</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span>Comissões</span>
-                                  <span className="text-green-600">R$ 0</span>
+                                  <span>500 pedidos x R$ 2,80</span>
+                                  <span className="text-green-600">R$ 1.400</span>
+                                </div>
+                                <div className="flex justify-between text-sm font-medium">
+                                  <span>Total</span>
+                                  <span className="text-green-600">R$ 2.150</span>
                                 </div>
                               </div>
                               <div className="rounded-lg p-3 bg-interaj-100/50 font-medium">
                                 <div className="flex justify-between">
                                   <span>Economia Mensal</span>
-                                  <span className="text-green-700">R$ 11.101</span>
+                                  <span className="text-green-700">R$ 10.350</span>
                                 </div>
                               </div>
                             </div>
@@ -646,15 +651,15 @@ const Index = () => {
                   Economia Real
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-interaj-900 font-display">
-                  Transforme comissões imprevisíveis em custos fixos previsíveis
+                  Transforme comissões imprevisíveis em custos previsíveis
                 </h3>
                 <p className="text-muted-foreground">
-                  Nosso modelo de preço fixo mensal substitui as altas comissões das plataformas de delivery, gerando economia significativa e previsibilidade financeira.
+                  Nosso modelo de preço combina uma assinatura mensal fixa com um pequeno valor por pedido para cobrir os tokens de IA, gerando economia significativa e previsibilidade financeira.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-interaj-500">•</div>
-                    <p>Sem comissões sobre vendas, apenas uma mensalidade fixa</p>
+                    <p>Sem comissões percentuais sobre vendas</p>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 text-interaj-500">•</div>
@@ -683,13 +688,13 @@ const Index = () => {
               O que nossos clientes dizem
             </h2>
             <p className="text-muted-foreground text-lg">
-              Restaurantes que implementaram a interajAI e transformaram seus negócios.
+              Restaurantes que implementaram a InterajAI e transformaram seus negócios.
             </p>
           </ScrollObserver>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
-              quote="Desde que implementamos o chatbot da interajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio nos dá uma previsibilidade financeira que não tínhamos antes."
+              quote="Desde que implementamos o chatbot da InterajAI, nossa rentabilidade aumentou 23%. A migração dos clientes das plataformas de delivery para o canal próprio nos dá uma previsibilidade financeira que não tínhamos antes."
               author="Carlos Silva"
               role="Proprietário"
               company="Pizzaria Bella Napoli"
@@ -703,7 +708,7 @@ const Index = () => {
               delay={200}
             />
             <TestimonialCard
-              quote="A integração com o Colibri foi perfeita e a equipe da interajAI nos deu todo o suporte necessário. O atendimento automático funciona tão bem que os clientes nem percebem que estão falando com um bot."
+              quote="A integração com nosso PDV foi perfeita e a equipe da InterajAI nos deu todo o suporte necessário. O atendimento automático funciona tão bem que os clientes nem percebem que estão falando com um bot."
               author="Rafael Mendes"
               role="Diretor"
               company="Burger House"
@@ -718,16 +723,16 @@ const Index = () => {
                   <h3 className="text-2xl font-bold text-interaj-900 font-display mb-2">Resultados Comprovados</h3>
                   <p className="text-muted-foreground">Média dos resultados obtidos pelos nossos clientes</p>
                 </div>
-                <div className="flex flex-wrap justify-center">
-                  <div className="text-center">
+                <div className="grid grid-cols-3 gap-4 mt-4 md:mt-0">
+                  <div className="text-center px-2">
                     <div className="text-3xl font-bold text-interaj-600">23%</div>
                     <div className="text-sm text-muted-foreground">Aumento de Rentabilidade</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center px-2">
                     <div className="text-3xl font-bold text-interaj-600">35%</div>
                     <div className="text-sm text-muted-foreground">Redução de Custos</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center px-2">
                     <div className="text-3xl font-bold text-interaj-600">28%</div>
                     <div className="text-sm text-muted-foreground">Aumento no Ticket Médio</div>
                   </div>
@@ -746,7 +751,7 @@ const Index = () => {
               Perguntas Frequentes
             </h2>
             <p className="text-muted-foreground text-lg">
-              Tire suas dúvidas sobre a implementação da interajAI.
+              Tire suas dúvidas sobre a implementação da InterajAI.
             </p>
           </ScrollObserver>
 
@@ -773,7 +778,7 @@ const Index = () => {
                   <div className="bg-interaj-500 text-white text-sm font-medium px-4 py-1 rounded-full">Plano Único</div>
                 </div>
                 <div className="mb-6">
-                  <div className="text-sm font-medium text-interaj-800 mb-2">interajAI Restaurantes</div>
+                  <div className="text-sm font-medium text-interaj-800 mb-2">InterajAI Restaurantes</div>
                   <div className="text-3xl font-bold text-interaj-900 font-display">
                     R$ 750<span className="text-lg font-normal text-muted-foreground">/mês</span>
                   </div>
@@ -836,7 +841,7 @@ const Index = () => {
             <p className="text-muted-foreground">Plano inclui:</p>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4">
               <span className="inline-flex items-center text-sm text-interaj-700">
-                <DollarSign size={16} className="mr-1" /> Preço mensal fixo previsível
+                <DollarSign size={16} className="mr-1" /> Preço mensal fixo previsível + valor por pedido
               </span>
               <span className="inline-flex items-center text-sm text-interaj-700">
                 <Clock size={16} className="mr-1" /> Atendimento 24/7
@@ -849,7 +854,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section - Modified to remove the form */}
+      {/* Contact Section - without form */}
       <section id="contato" className="py-20 px-6">
         <div className="container mx-auto">
           <ScrollObserver animation="from-left">
@@ -858,12 +863,12 @@ const Index = () => {
                 Transforme seu restaurante hoje
               </h2>
               <p className="text-muted-foreground text-lg text-center">
-                Entre em contato para uma demonstração personalizada e veja como a interajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
+                Entre em contato para uma demonstração personalizada e veja como a InterajAI pode revolucionar seu atendimento e aumentar sua rentabilidade com custos previsíveis.
               </p>
               <div className="flex flex-col items-center space-y-4 pt-4">
                 <div className="flex items-center">
                   <Mail className="mr-3 text-interaj-500" size={20} />
-                  <span>contato@interajai.com</span>
+                  <span>restaurantes@interajai.com.br</span>
                 </div>
                 <div className="flex items-center">
                   <MessageCircle className="mr-3 text-interaj-500" size={20} />
@@ -902,7 +907,7 @@ const Index = () => {
             <div className="h-10 sm:h-12">
               <img 
                 src="/lovable-uploads/d96ff836-d7f3-4831-9da2-bc879e772b7a.png" 
-                alt="interajAI Restaurantes Logo" 
+                alt="InterajAI Restaurantes Logo" 
                 className="h-full"
               />
             </div>
@@ -915,7 +920,7 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-muted-foreground">
-            © {new Date().getFullYear()} interajAI. Todos os direitos reservados.
+            © {new Date().getFullYear()} InterajAI. Todos os direitos reservados.
           </div>
         </div>
       </footer>
@@ -924,3 +929,4 @@ const Index = () => {
 };
 
 export default Index;
+
