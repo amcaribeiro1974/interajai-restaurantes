@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Button from '@/components/Button';
 import ScrollObserver from '@/components/ScrollObserver';
@@ -157,7 +156,7 @@ const Index = () => {
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-interaj-900 font-display leading-tight">
-                Ganhe um novo canal de vendas por WhatsApp + IA — só <span className="text-interaj-500">6% sobre as vendas</span>
+                Ganhe um novo canal de vendas por WhatsApp + IA
               </h1>
               <p className="text-lg sm:text-xl text-muted-foreground text-balance">
                 Sem custo fixo, sem migração. Marketing + IA inclusos. Lançamos, divulgamos e operamos seu canal de pedidos 24/7.
